@@ -1,0 +1,8 @@
+{
+  "appId": "sys.contacts",
+  "appName": "contacts",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

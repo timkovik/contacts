@@ -1,0 +1,45 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      Contacts
+    </ion-title>
+    <ion-buttons collapse="true" slot="end">
+      <ion-button (click)="openNewContactModal()">
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-header collapse="condense" class="ion-no-border">
+    <ion-toolbar>
+      <ion-title size="large">Контакты</ion-title>
+      <ion-buttons collapse="true" slot="end">
+        <ion-button color="primary" (click)="openNewContactModal()">
+          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-segment (ionChange)="filterContacts($event)" value="All">
+    <ion-segment-button value="All" checked>
+      Все
+    </ion-segment-button>
+    <ion-segment-button value="Friend">
+      Друзья
+    </ion-segment-button>
+    <ion-segment-button value="Family">
+      Семья
+    </ion-segment-button>
+  </ion-segment>
+  <ion-searchbar placeholder="фильтр" inputmode="text" type="text" (ionChange)="onSearchChange($event)" [debounce]="250"
+    showCancelButton="always"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let contact of contacts | async" [routerLink]="'/contact-details/' + contact.id">
+      <ion-label>{{ contact.firstName }} {{ contact.lastName }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
